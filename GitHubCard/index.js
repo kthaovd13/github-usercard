@@ -30,7 +30,7 @@ axios.get('https:api.github.com/users/kthaovd13')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -75,23 +75,24 @@ const createCard = (obj) => {
 
   card.appendChild(imgOfUser)
   card.appendChild(cardInfo)
+  cardInfo.appendChild(name)
   cardInfo.appendChild(userName)
   cardInfo.appendChild(userLocation)
   cardInfo.appendChild(userProfile)
   cardInfo.appendChild(userFollowers)
   cardInfo.appendChild(userFollowing)
   cardInfo.appendChild(userBio)
-  userBio.appendChild(userLink)
+  userProfile.appendChild(userLink)
 
 
   imgOfUser.src = obj.avatar_url
   name.textContent = obj.name
   userName.textContent = obj.login
-  userLocation.textContent = obj.location
-  userLink.href = obj.html_url
-  userFollowers.textContent = obj.followers
-  userFollowing.textContent = obj.following
-  userBio.textContent = obj.bio
+  userLocation.textContent = `Location: ${obj.location}`
+  userProfile.innerHTML = `Profile: <a href="${obj.html_url}">${obj.html_url}`
+  userFollowers.textContent = `Followers: ${obj.followers}`
+  userFollowing.textContent = `Following: ${obj.following}`
+  userBio.textContent = `Bio: ${obj.bio}`
 
 
 return card
@@ -108,3 +109,10 @@ const allCards = document.querySelector(".cards");
   luishrd
   bigknell
 */
+
+// const entryPoint = document.querySelector('.cards')
+
+// followersArray.forEach(response => {
+//   const newCard = createCard (response.data)
+//   entryPoint.appendChild(newCard)
+// })
